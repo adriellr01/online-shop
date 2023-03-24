@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineShop.Data;
 
@@ -10,9 +11,11 @@ using OnlineShop.Data;
 namespace OnlineShop.Migrations
 {
     [DbContext(typeof(OnlineShopContext))]
-    partial class OnlineShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230324031736_change-Description")]
+    partial class changeDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,37 +86,6 @@ namespace OnlineShop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Shops");
-                });
-
-            modelBuilder.Entity("OnlineShop.Entities.ShoppingCart", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<decimal>("DeliveryPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("PaymentMethod")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Subtotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Tax")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ShoppingCarts");
                 });
 #pragma warning restore 612, 618
         }

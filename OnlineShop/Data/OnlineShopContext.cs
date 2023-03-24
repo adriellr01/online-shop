@@ -8,10 +8,12 @@ namespace OnlineShop.Data
         public DbSet<Shop> Shops { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
+        public DbSet<Product> Products { get; set; }
         public OnlineShopContext(DbContextOptions<OnlineShopContext> context)
             : base(context)
         {
 
         }
+        
     }
 }

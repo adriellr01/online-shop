@@ -7,27 +7,18 @@ namespace OnlineShop.Entities
 {
     public class Product
     {
-        [Required]
-        public long Id { get; set; }
-        [Required]
-        public int CategoryId { get; set; }
-        [Required]
+        public long Id { get; set; }        
+        public int CategoryId { get; set; }        
         public int ShopId { get; set; }
         [Required, MaxLength(256)] 
         public string Name { get; set; }        
-        [Required, MaxLength(328)] 
+        [MaxLength(512)] 
         public string Description { get; set; }
         [Required, MaxLength(256)] 
         public string ImagePath { get; set; }
-        [Required]
         public long Price { get; set; }
-        [Required]
         public int SoldQuantity { get; set; }
-        [Required]
         public bool IsActive { get; set; }
-
-  
-        
-
+ 
     }
 }

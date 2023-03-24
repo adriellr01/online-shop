@@ -10,6 +10,9 @@ namespace OnlineShop.Data
 
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Address> Address { get; set; }
         public OnlineShopContext(DbContextOptions<OnlineShopContext> context)
             : base(context)
         {

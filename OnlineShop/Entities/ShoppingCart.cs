@@ -4,19 +4,12 @@ namespace OnlineShop.Entities
 {
     public class ShoppingCart
     {
-        [Required]
         public long Id { get; set; }
-        [Required]
-        public long UserId { get; set; }
-        [Required]
-        public decimal Subtotal { get; set; }
-        [Required]
-        public decimal DeliveryPrice { get; set; }
-        [Required]
-        public decimal Tax { get; set; }
-        [Required]
-        public decimal TotalPrice { get; set; }
-        [Required]  
+        public long UserId { get; set; }      
+        public decimal Subtotal { get; set; }      
+        public decimal DeliveryPrice { get; set; }    
+        public decimal Tax { get; set; }      
+        public decimal TotalPrice { get; set; }  
         public int PaymentMethod { get; set; }
 
     }

@@ -60,7 +60,7 @@ namespace OnlineShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Entities.Category", b =>
@@ -89,7 +89,7 @@ namespace OnlineShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Entities.Order", b =>
@@ -126,40 +126,7 @@ namespace OnlineShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("OnlineShop.Entities.Payment", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<decimal>("Aumont")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("Billed")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("OrderId")
-                        .HasMaxLength(256)
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Productids")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Refunded")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Payments");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Entities.Product", b =>
@@ -202,7 +169,7 @@ namespace OnlineShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Entities.Shop", b =>
@@ -223,7 +190,7 @@ namespace OnlineShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shops");
+                    b.ToTable("Shops", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Entities.ShoppingCart", b =>
@@ -254,7 +221,7 @@ namespace OnlineShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Entities.User", b =>
@@ -305,7 +272,7 @@ namespace OnlineShop.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 #pragma warning restore 612, 618
         }

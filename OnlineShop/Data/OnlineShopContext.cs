@@ -13,6 +13,8 @@ namespace OnlineShop.Data
         public DbSet<Order> Order { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Address> Address { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+
 
         public OnlineShopContext()
         {

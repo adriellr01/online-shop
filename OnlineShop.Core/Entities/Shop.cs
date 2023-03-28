@@ -1,4 +1,4 @@
-﻿namespace OnlineShop.Entities
+﻿namespace OnlineShop.Core.Entities
 {
     public class Shop
     {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineShop.Data;
+using Microsoft.EntityFrameworkCore;
+using OnlineShop.EntityFramework;
 
 namespace OnlineShop.Controllers
 {
@@ -12,6 +13,13 @@ namespace OnlineShop.Controllers
         public ShopsController(OnlineShopContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAsync()
+        {
+            var shops = await _dbContext.Shops.ToListAsync();
+            return Ok(shops);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace OnlineShop.Controllers
             _context = context;
         }
 
-
+        /*
         [HttpGet]
         public async Task<ActionResult<List<ShoppingCart>>> GetAll()
         {
@@ -78,5 +78,6 @@ namespace OnlineShop.Controllers
             }
             return NotFound();
         }
+        */
     }
 }

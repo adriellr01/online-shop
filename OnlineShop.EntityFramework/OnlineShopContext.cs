@@ -8,6 +8,7 @@ namespace OnlineShop.EntityFramework
     {
         public DbSet<Shop> Shops { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public OnlineShopContext(DbContextOptions<OnlineShopContext> context)
             : base(context)

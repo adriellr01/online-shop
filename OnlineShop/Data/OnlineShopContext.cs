@@ -5,7 +5,7 @@ namespace OnlineShop.Data
 {
     public class OnlineShopContext : DbContext
     {
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+       
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Order { get; set; }

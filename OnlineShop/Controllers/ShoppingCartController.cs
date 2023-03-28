@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
-using OnlineShop.Entities;
+using OnlineShop.Core.Entities;
+using OnlineShop.EntityFramework;
 
 namespace OnlineShop.Controllers
 {
@@ -22,7 +22,8 @@ namespace OnlineShop.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ShoppingCart>>> GetAll()
         {
-            return await _context.ShoppingCarts.ToListAsync();
+            var result = await _context.ShoppingCarts.ToListAsync();
+            return Ok(result);
         }
 
 
@@ -34,7 +35,7 @@ namespace OnlineShop.Controllers
             {
                return NotFound(); 
             }
-            return item;
+            return Ok(item);
         }
 
 

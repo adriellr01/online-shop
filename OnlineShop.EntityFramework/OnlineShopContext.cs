@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineShop.Core.Entities;
-using System.Data;
+
 
 namespace OnlineShop.EntityFramework
 {
@@ -8,6 +8,7 @@ namespace OnlineShop.EntityFramework
     {
         public DbSet<Shop> Shops { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<User > Users { get; set; }
 
         public OnlineShopContext(DbContextOptions<OnlineShopContext> context)
             : base(context)

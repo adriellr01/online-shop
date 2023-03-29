@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OnlineShop.Core.Repositories;
 using OnlineShop.EntityFramework;
+using OnlineShop.EntityFramework.Repositories;
 
 namespace OnlineShop.Controllers
 {
@@ -8,17 +10,17 @@ namespace OnlineShop.Controllers
     [Route("[controller]")]
     public class ShopsController : ControllerBase
     {
-        private readonly OnlineShopContext _dbContext;
+        private readonly IShopRepository _shopRepository;
 
-        public ShopsController(OnlineShopContext dbContext)
+        public ShopsController(IShopRepository shopRepository)
         {
-            _dbContext = dbContext;
+            _shopRepository = shopRepository;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAsync()
+        public IActionResult GetAll()
         {
-            var shops = await _dbContext.Shops.ToListAsync();
+            var shops = _shopRepository.GetAll();
             return Ok(shops);
         }
     }

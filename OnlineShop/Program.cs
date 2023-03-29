@@ -1,7 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
+using OnlineShop.Core.Repositories;
 using OnlineShop.EntityFramework;
+using OnlineShop.EntityFramework.Repositories;
 
 namespace OnlineShop
 {
@@ -22,6 +23,8 @@ namespace OnlineShop
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
             });
+
+            builder.Services.AddTransient<IShopRepository, ShopRepository>();
 
             var app = builder.Build();
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.Core.Entities;
+using OnlineShop.Core.Repositories;
 using OnlineShop.EntityFramework;
 
 namespace OnlineShop.Controllers
@@ -11,105 +12,56 @@ namespace OnlineShop.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly OnlineShopContext _context;
+        private readonly IUserShopRepository _userShopRepository;
 
-        public UsersController(OnlineShopContext context)
+        public UsersController(IUserShopRepository userShopRepository)
         {
-            _context = context;
+            _userShopRepository = userShopRepository ;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public ActionResult GetUsers()
         {
-            if (_context.Users == null)
-            {
-                return NotFound();
-            }
-            return await _context.Users.ToListAsync();
+            var users = _userShopRepository.GetAll();
+            return Ok(users);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        public ActionResult GetUser(int id)
         {
-            if (_context.Users == null)
-            {
-                return NotFound();
-            }
-            var user = await _context.Users.FindAsync(id);
+            var user = _userShopRepository.GetById(id);
 
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
+            return Ok(user);    
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public ActionResult PostUser(User user)
         {
-            if (_context.Users == null)
-            {
-                return Problem("Entity set 'MyOnlineShopContext.Users'  is null.");
-            }
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            _userShopRepository.Insert(user);
 
-            return CreatedAtAction("GetUser", new { id = user.id }, user);
+            return Ok();
+            
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(long id, User user)
+        [HttpPut]
+        public ActionResult UpdateUser(User user)
         {
-            if (id != user.id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            var userUpdate=_userShopRepository.Update(user);
+            return Ok(userUpdate);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(long id)
-        {
-            if (_context.Users == null)
-            {
-                return NotFound();
-            }
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
+        public ActionResult DeleteUser(long id) {
+
+            var userDelete = _userShopRepository.GetById(id);
+            if (userDelete == null) {
+
+                return Problem("El usuario no existe");
             }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            _userShopRepository.Delete(userDelete.id);
+            return Ok(userDelete);
         }
 
-   
-        private bool UserExists(long id)
-        {
-            return (_context.Users?.Any(e => e.id == id)).GetValueOrDefault();
-        }
     }
 }

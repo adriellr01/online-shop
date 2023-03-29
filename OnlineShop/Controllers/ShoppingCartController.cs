@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.Core.Entities;
+using OnlineShop.Core.Repositories;
 using OnlineShop.EntityFramework;
 
 namespace OnlineShop.Controllers
@@ -11,73 +13,47 @@ namespace OnlineShop.Controllers
     [ApiController]
     public class ShoppingCartController : ControllerBase
     {
-        private readonly OnlineShopContext _context;
+        private readonly IShoppingCartRepository _shoppingCartRepository;
 
-        public ShoppingCartController(OnlineShopContext context)
+        public ShoppingCartController(IShoppingCartRepository shoppingCartRepository)
         {
-            _context = context;
+            _shoppingCartRepository = shoppingCartRepository;
         }
 
-        /*
         [HttpGet]
-        public async Task<ActionResult<List<ShoppingCart>>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var result = await _context.ShoppingCarts.ToListAsync();
+            var shoppingCarts = await _shoppingCartRepository.GetAll();
+            return Ok(shoppingCarts);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(long id)
+        {
+            var shoppingCart = await _shoppingCartRepository.GetById(id);
+            return Ok(shoppingCart);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(ShoppingCart shoppingCart)
+        {
+            await _shoppingCartRepository.Create(shoppingCart);
+            return Ok(shoppingCart);
+            
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(ShoppingCart shoppingCart)
+        {
+           var result = await _shoppingCartRepository.Update(shoppingCart);
+            return Ok(result);
+
+        }
+        [HttpDelete]
+        public async Task<IActionResult> Delete(long id)
+        {
+           var result = await _shoppingCartRepository.Delete(id);
             return Ok(result);
         }
 
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ShoppingCart>> GetById(long id)
-        {
-            var item = await _context.ShoppingCarts.FirstOrDefaultAsync(x => x.Id == id);
-            if (item is null)
-            {
-               return NotFound(); 
-            }
-            return Ok(item);
-        }
-
-
-        [HttpPost]
-        public async Task<ActionResult> Create(ShoppingCart shoppingCart)
-        { 
-            await _context.ShoppingCarts.AddAsync(shoppingCart);
-            await _context.SaveChangesAsync();
-            return Ok();
-        }
-
-        [HttpPut("{id:long}")]
-        public async Task<ActionResult> Update(long id, ShoppingCart shoppingCart)
-        {
-            var item = await _context.ShoppingCarts.FindAsync(id);
-            if (item is null)
-            {
-                return NotFound();
-            }
-            item.UserId = shoppingCart.UserId;
-            item.Subtotal = shoppingCart.Subtotal;
-            item.DeliveryPrice = shoppingCart.DeliveryPrice;
-            item.Tax = shoppingCart.Tax;
-            item.TotalPrice = shoppingCart.TotalPrice;
-            item.PaymentMethod = shoppingCart.PaymentMethod;
-            await _context.SaveChangesAsync();
-            return Ok();
-        }
-
-
-        [HttpDelete("{id:long}")]
-        public async Task<ActionResult> Delete(long id)
-        {
-            var itemToDelete = await _context.ShoppingCarts.FindAsync(id);
-            if (itemToDelete != null)
-            {
-                _context.ShoppingCarts.Remove(itemToDelete);
-                await _context.SaveChangesAsync();
-                return NoContent();
-            }
-            return NotFound();
-        }
-        */
     }
 }

@@ -26,6 +26,7 @@ namespace OnlineShop
 
             builder.Services.AddTransient<IShopRepository, ShopRepository>();
             builder.Services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
+            builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 
             var app = builder.Build();
 

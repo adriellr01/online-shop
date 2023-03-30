@@ -50,7 +50,7 @@ namespace OnlineShop.EntityFramework.Repositories
             return objeto;
 
         }
-        public void Delete(int id)
+        public void Delete(long id)
         {
            var payment = _db.Payments.FirstOrDefault(p => p.Id == id);
             if (payment != null)

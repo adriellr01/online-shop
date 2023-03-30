@@ -14,8 +14,6 @@ namespace OnlineShop.Core.Repositories
         Payment GetByid(long id);
         Payment Insert(Payment Objeto);
         Payment Update(Payment Objeto);
-        Payment Delete(long id);
-       
-
+        void Delete(long id);
     }
 }

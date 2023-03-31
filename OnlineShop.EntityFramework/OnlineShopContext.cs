@@ -11,6 +11,9 @@ namespace OnlineShop.EntityFramework
         public DbSet<User> Users { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Address> Address { get; set; }
         public OnlineShopContext(DbContextOptions<OnlineShopContext> context)
             : base(context)
         {

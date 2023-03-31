@@ -40,23 +40,31 @@ namespace OnlineShop.EntityFramework.Repositories
         public async Task<bool> Update(ShoppingCart shoppingCart)
         {
             var currentShoppingCart =await GetById(shoppingCart.Id);
-            currentShoppingCart.UserId = shoppingCart.UserId;
-            currentShoppingCart.Subtotal = shoppingCart.Subtotal;
-            currentShoppingCart.DeliveryPrice = shoppingCart.DeliveryPrice;
-            currentShoppingCart.Tax = shoppingCart.Tax;
-            currentShoppingCart.TotalPrice = shoppingCart.TotalPrice;
-            currentShoppingCart.PaymentMethod = shoppingCart.PaymentMethod;
+            if (currentShoppingCart != null)
+            {
+                currentShoppingCart.UserId = shoppingCart.UserId;
+                currentShoppingCart.Subtotal = shoppingCart.Subtotal;
+                currentShoppingCart.DeliveryPrice = shoppingCart.DeliveryPrice;
+                currentShoppingCart.Tax = shoppingCart.Tax;
+                currentShoppingCart.TotalPrice = shoppingCart.TotalPrice;
+                currentShoppingCart.PaymentMethod = shoppingCart.PaymentMethod;
 
-            int result = await _context.SaveChangesAsync();
-            return result > 0;
+                int result = await _context.SaveChangesAsync();
+                return result > 0;
+            }
+            return false;
         }
         public async Task<bool> Delete(long id)
         {
             var currentShoppingCart = await GetById(id);
-            _context.ShoppingCarts.Remove(currentShoppingCart);
+            if(currentShoppingCart != null)
+            {
+                _context.ShoppingCarts.Remove(currentShoppingCart);
+                int result = await _context.SaveChangesAsync();
+                return result > 0;
+            }
+            return false;
 
-            int result = await _context.SaveChangesAsync();
-            return result > 0;
         }
     }
 }

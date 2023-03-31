@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineShop.Core.Entities;
 using OnlineShop.Core.Repositories;
-using OnlineShop.EntityFramework.Migrations;
 
 namespace OnlineShop.EntityFramework.Repositories
 {

@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using OnlineShop.Application.Shops;
 using OnlineShop.Core.Repositories;
 using OnlineShop.EntityFramework;
 using OnlineShop.EntityFramework.Repositories;
@@ -26,6 +27,7 @@ namespace OnlineShop
 
             builder.Services.AddTransient<IShopRepository, ShopRepository>();
             builder.Services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
+            builder.Services.AddTransient<ShopAppService, ShopAppService>();
 
             var app = builder.Build();
 

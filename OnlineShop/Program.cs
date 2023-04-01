@@ -34,6 +34,8 @@ namespace OnlineShop
             builder.Services.AddTransient<IShoppingCartAppServices, ShoppingCartAppServices>();
 
             builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+            builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             var app = builder.Build();

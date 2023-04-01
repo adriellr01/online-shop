@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
-using OnlineShop.Core.Entities;
-using OnlineShop.EntityFramework;
 using OnlineShop.Core.Repositories;
 
 namespace OnlineShop.Controllers
@@ -13,8 +9,8 @@ namespace OnlineShop.Controllers
     public class PaymentController : ControllerBase
     {
 
-        private readonly IPaymentRepository _paymentrepository ;
-         public PaymentController(IPaymentRepository payment)
+        private readonly IPaymentRepository _paymentrepository;
+        public PaymentController(IPaymentRepository payment)
         {
             _paymentrepository = payment;
         }
@@ -24,7 +20,7 @@ namespace OnlineShop.Controllers
             var payment = _paymentrepository.GetAll();
             return Ok(payment);
         }
-     }
+    }
 }
 
 

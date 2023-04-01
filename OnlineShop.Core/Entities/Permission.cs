@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.Core.Entities
 {
-    internal class Permission
+    public class Permission
     {
         [Required]
         public int Id { get; set; }

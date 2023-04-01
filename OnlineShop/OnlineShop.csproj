@@ -39,5 +39,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\OnlineShop.Application\OnlineShop.Application.csproj" />
+	  <ProjectReference Include="..\OnlineShop.EntityFramework\OnlineShop.EntityFramework.csproj" />
 	</ItemGroup>
 </Project>

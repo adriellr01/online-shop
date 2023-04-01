@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.Core.Entities
 {
-    internal class Customer
+    public class Customer
     {
         [Required]
         public long Id { get; set; }

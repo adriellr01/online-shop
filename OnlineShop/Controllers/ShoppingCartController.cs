@@ -8,6 +8,7 @@ using OnlineShop.Application.ShoppingCarts.Interfaces;
 using OnlineShop.Core.Entities;
 using OnlineShop.Core.Repositories;
 using OnlineShop.EntityFramework;
+using System.Net;
 
 namespace OnlineShop.Controllers
 {
@@ -23,20 +24,33 @@ namespace OnlineShop.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<ActionResult> GetAll()
         {
             var shoppingCartsDtos = await _shoppingCartAppServices.GetAll();
             return Ok(shoppingCartsDtos);
         }
+
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(long id)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+
+        public async Task<ActionResult> GetById(long id)
         {
-            var shoppingCartDto = await _shoppingCartAppServices.GetById(id);
-            return Ok(shoppingCartDto);
+            try
+            {
+                var shoppingCartDto = await _shoppingCartAppServices.GetById(id);
+                return Ok(shoppingCartDto);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ShoppingCartDto shoppingCartDto)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<ActionResult> Create(ShoppingCartDto shoppingCartDto)
         {
             await _shoppingCartAppServices.Create(shoppingCartDto);
             return Ok(shoppingCartDto);
@@ -44,17 +58,35 @@ namespace OnlineShop.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(ShoppingCartDto shoppingCartDto)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> Update(ShoppingCartDto shoppingCartDto)
         {
-           var result = await _shoppingCartAppServices.Update(shoppingCartDto);
-            return Ok(result);
-
+            try
+            {
+                var result = await _shoppingCartAppServices.Update(shoppingCartDto);
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
+
         [HttpDelete]
-        public async Task<IActionResult> Delete(long id)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> Delete(long id)
         {
-           var result = await _shoppingCartAppServices.Delete(id);
-            return Ok(result);
+            try
+            {
+                var result = await _shoppingCartAppServices.Delete(id);
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
     }

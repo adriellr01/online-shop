@@ -36,11 +36,6 @@ namespace OnlineShop.Application.ShoppingCarts
         public async Task<IEnumerable<ShoppingCartDto>> GetAll()
         {
             var shoppingCarts = await _shoppingCartRepository.GetAll();
-           /* var resultListDtos = new List<ShoppingCartDto>();
-            foreach (var item in shoppingCarts)
-            {
-                resultListDtos.Add(_mapper.Map<ShoppingCartDto>(shoppingCarts));
-            }*/
             return _mapper.Map<List<ShoppingCartDto>>(shoppingCarts);
         }
 

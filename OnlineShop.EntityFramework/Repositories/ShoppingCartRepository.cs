@@ -27,8 +27,13 @@ namespace OnlineShop.EntityFramework.Repositories
 
         public async Task<ShoppingCart> GetById(long id)
         {
-            var shoppingCart = await _context.ShoppingCarts.FirstOrDefaultAsync(x => x.Id == id);
-            return shoppingCart;
+                var currentShoppingCart = await _context.ShoppingCarts.FirstOrDefaultAsync(x => x.Id == id);
+                if (currentShoppingCart is null)
+                {
+                    throw new Exception("No existe la Shopping Cart a la que hace referencia!!!!");
+                }
+                return currentShoppingCart;
+
         }
 
         public async Task Create(ShoppingCart shoppingCart)
@@ -40,31 +45,24 @@ namespace OnlineShop.EntityFramework.Repositories
         public async Task<bool> Update(ShoppingCart shoppingCart)
         {
             var currentShoppingCart =await GetById(shoppingCart.Id);
-            if (currentShoppingCart != null)
-            {
-                currentShoppingCart.UserId = shoppingCart.UserId;
-                currentShoppingCart.Subtotal = shoppingCart.Subtotal;
-                currentShoppingCart.DeliveryPrice = shoppingCart.DeliveryPrice;
-                currentShoppingCart.Tax = shoppingCart.Tax;
-                currentShoppingCart.TotalPrice = shoppingCart.TotalPrice;
-                currentShoppingCart.PaymentMethod = shoppingCart.PaymentMethod;
+        
+            currentShoppingCart.UserId = shoppingCart.UserId;
+            currentShoppingCart.Subtotal = shoppingCart.Subtotal;
+            currentShoppingCart.DeliveryPrice = shoppingCart.DeliveryPrice;
+            currentShoppingCart.Tax = shoppingCart.Tax;
+            currentShoppingCart.TotalPrice = shoppingCart.TotalPrice;
+            currentShoppingCart.PaymentMethod = shoppingCart.PaymentMethod;
 
-                int result = await _context.SaveChangesAsync();
-                return result > 0;
-            }
-            return false;
+            int result = await _context.SaveChangesAsync();
+            return result > 0;
         }
         public async Task<bool> Delete(long id)
         {
             var currentShoppingCart = await GetById(id);
-            if(currentShoppingCart != null)
-            {
-                _context.ShoppingCarts.Remove(currentShoppingCart);
-                int result = await _context.SaveChangesAsync();
-                return result > 0;
-            }
-            return false;
-
+          
+            _context.ShoppingCarts.Remove(currentShoppingCart);
+            int result = await _context.SaveChangesAsync();
+            return result > 0;
         }
     }
 }

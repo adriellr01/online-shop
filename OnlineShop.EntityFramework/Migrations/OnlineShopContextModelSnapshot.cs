@@ -60,7 +60,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Core.Entities.Category", b =>
@@ -89,7 +89,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Core.Entities.Customer", b =>
@@ -130,7 +130,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Core.Entities.Order", b =>
@@ -167,7 +167,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Core.Entities.Payment", b =>
@@ -200,7 +200,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Core.Entities.Permission", b =>
@@ -227,7 +227,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Permissions");
+                    b.ToTable("Permissions", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Core.Entities.Shop", b =>
@@ -266,7 +266,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shops");
+                    b.ToTable("Shops", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Core.Entities.ShoppingCart", b =>
@@ -297,7 +297,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Core.Entities.User", b =>
@@ -348,7 +348,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Entities.Product", b =>
@@ -391,7 +391,7 @@ namespace OnlineShop.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 #pragma warning restore 612, 618
         }

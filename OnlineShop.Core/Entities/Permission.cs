@@ -12,7 +12,7 @@ namespace OnlineShop.Core.Entities
         [Required]
         public int Id { get; set; }
         [Required,MaxLength(128)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [Required]
         public bool IsGranted{ get; set; } 
         public int RoleId { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineShop.Core.Entities;
 using OnlineShop.Entities;
+using System.Security;
 
 namespace OnlineShop.EntityFramework
 {
@@ -11,6 +12,12 @@ namespace OnlineShop.EntityFramework
         public DbSet<User> Users { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Address> Address { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+
         public OnlineShopContext(DbContextOptions<OnlineShopContext> context)
             : base(context)
         {

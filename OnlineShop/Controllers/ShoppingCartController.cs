@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OnlineShop.Application.ShoppingCarts.Dto;
+using OnlineShop.Application.ShoppingCarts.Interfaces;
 using OnlineShop.Core.Entities;
 using OnlineShop.Core.Repositories;
 using OnlineShop.EntityFramework;
@@ -13,45 +15,45 @@ namespace OnlineShop.Controllers
     [ApiController]
     public class ShoppingCartController : ControllerBase
     {
-        private readonly IShoppingCartRepository _shoppingCartRepository;
+        private readonly IShoppingCartAppServices _shoppingCartAppServices;
 
-        public ShoppingCartController(IShoppingCartRepository shoppingCartRepository)
+        public ShoppingCartController(IShoppingCartAppServices shoppingCartAppServices)
         {
-            _shoppingCartRepository = shoppingCartRepository;
+            _shoppingCartAppServices = shoppingCartAppServices;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var shoppingCarts = await _shoppingCartRepository.GetAll();
-            return Ok(shoppingCarts);
+            var shoppingCartsDtos = await _shoppingCartAppServices.GetAll();
+            return Ok(shoppingCartsDtos);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(long id)
         {
-            var shoppingCart = await _shoppingCartRepository.GetById(id);
-            return Ok(shoppingCart);
+            var shoppingCartDto = await _shoppingCartAppServices.GetById(id);
+            return Ok(shoppingCartDto);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ShoppingCart shoppingCart)
+        public async Task<IActionResult> Create(ShoppingCartDto shoppingCartDto)
         {
-            await _shoppingCartRepository.Create(shoppingCart);
-            return Ok(shoppingCart);
+            await _shoppingCartAppServices.Create(shoppingCartDto);
+            return Ok(shoppingCartDto);
             
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(ShoppingCart shoppingCart)
+        public async Task<IActionResult> Update(ShoppingCartDto shoppingCartDto)
         {
-           var result = await _shoppingCartRepository.Update(shoppingCart);
+           var result = await _shoppingCartAppServices.Update(shoppingCartDto);
             return Ok(result);
 
         }
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-           var result = await _shoppingCartRepository.Delete(id);
+           var result = await _shoppingCartAppServices.Delete(id);
             return Ok(result);
         }
 

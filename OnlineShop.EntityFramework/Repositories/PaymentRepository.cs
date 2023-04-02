@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineShop.Core.Entities;
 using OnlineShop.Core.Repositories;
-using OnlineShop.EntityFramework.Migrations;
 
 namespace OnlineShop.EntityFramework.Repositories
 {
@@ -50,7 +49,7 @@ namespace OnlineShop.EntityFramework.Repositories
             return objeto;
 
         }
-        public void Delete(int id)
+        public void Delete(long id)
         {
            var payment = _db.Payments.FirstOrDefault(p => p.Id == id);
             if (payment != null)

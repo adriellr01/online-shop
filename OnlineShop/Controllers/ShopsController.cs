@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OnlineShop.Application.Shops;
 using OnlineShop.Core.Repositories;
 using OnlineShop.EntityFramework;
 using OnlineShop.EntityFramework.Repositories;
@@ -10,17 +11,17 @@ namespace OnlineShop.Controllers
     [Route("[controller]")]
     public class ShopsController : ControllerBase
     {
-        private readonly IShopRepository _shopRepository;
+        private readonly ShopAppService _shopAppService;
 
-        public ShopsController(IShopRepository shopRepository)
+        public ShopsController(ShopAppService shopAppService)
         {
-            _shopRepository = shopRepository;
+            _shopAppService = shopAppService;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var shops = _shopRepository.GetAll();
+            var shops = _shopAppService.GetAll();
             return Ok(shops);
         }
     }

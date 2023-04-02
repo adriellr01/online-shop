@@ -4,12 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop", "OnlineShop\OnlineShop.csproj", "{6CE8917A-2F98-4E36-9E49-78050839CFD8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EE09E761-D93D-4ACA-B62C-B4BA8F811CE0} = {EE09E761-D93D-4ACA-B62C-B4BA8F811CE0}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop.Core", "OnlineShop.Core\OnlineShop.Core.csproj", "{EE09E761-D93D-4ACA-B62C-B4BA8F811CE0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop.EntityFramework", "OnlineShop.EntityFramework\OnlineShop.EntityFramework.csproj", "{BAC9F1C3-25EB-4969-AD39-7ED27CE5DE02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Application", "OnlineShop.Application\OnlineShop.Application.csproj", "{005A15DF-C3F9-4DE0-B8A9-A548B0823A16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop.Application", "OnlineShop.Application\OnlineShop.Application.csproj", "{005A15DF-C3F9-4DE0-B8A9-A548B0823A16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

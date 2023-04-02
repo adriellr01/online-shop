@@ -4,7 +4,6 @@ namespace OnlineShop.Core.Entities
 {
     public class User
     {
-        
         public long id { get; set; }
         
         [Required,MaxLength(128)]

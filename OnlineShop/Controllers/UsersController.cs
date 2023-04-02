@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using OnlineShop.Core.Entities;
 using OnlineShop.Core.Repositories;
 using OnlineShop.EntityFramework;
+using OnlineShop.Application;
+using OnlineShop.Application.User;
 
 namespace OnlineShop.Controllers
 {
@@ -13,10 +15,12 @@ namespace OnlineShop.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserShopRepository _userShopRepository;
+        private readonly UserAppService _userAppService;
 
-        public UsersController(IUserShopRepository userShopRepository)
+        public UsersController(IUserShopRepository userShopRepository, UserAppService userAppService)
         {
             _userShopRepository = userShopRepository ;
+            _userAppService = userAppService ;
         }
 
         [HttpGet]
@@ -32,6 +36,14 @@ namespace OnlineShop.Controllers
             var user = _userShopRepository.GetById(id);
 
             return Ok(user);    
+        }
+
+        [HttpGet("{username,password}")]
+        public ActionResult GetLoginUser(string username, string password)
+        {
+            var user = _userAppService.LoginDto(username, password);
+            
+            return Ok(user);
         }
 
         [HttpPost]
